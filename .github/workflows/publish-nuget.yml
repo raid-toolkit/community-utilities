@@ -1,0 +1,54 @@
+name: Publish Nuget
+
+on:
+  push:
+    branches:
+      - main
+      - v*.*
+    paths:
+      - "**"
+      - "!scripts/**"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    env:
+      Solution_Name: CommunityUtils.sln
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      # Install the .NET Core workload
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: |
+            5.0.x
+            6.0.x
+
+      # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+      - name: Setup MSBuild.exe
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      # Restore the application to populate the obj folder with RuntimeIdentifiers
+      - name: Restore the application
+        run: msbuild $env:Solution_Name /t:Restore /p:Configuration=Release
+
+      # Build + Pack
+      - name: Build
+        run: |
+          msbuild $env:Solution_Name -m -t:Build -p:Configuration=Release -p:Platform=x64
+          msbuild $env:Solution_Name -m -t:Pack -p:TargetFramework=net5.0-windows -p:Configuration=Release -p:Platform=x64 -p:PackageOutputPath="$(Get-Location)\publish"
+
+      # NuGet Push
+      - name: Push package to nuget.org
+        run: |
+          dotnet nuget push publish\*.nupkg -k $env:PUBLISH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
+          dotnet nuget push publish\*.snupkg -k $env:PUBLISH_TOKEN -s https://www.nuget.org/api/v2/symbolpackage --skip-duplicate
+        env:
+          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}

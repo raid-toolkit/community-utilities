@@ -1,0 +1,49 @@
+{
+  "editor.detectIndentation": false,
+  "editor.tabSize": 4,
+  "editor.fontFamily": "Operator Mono",
+  "editor.fontWeight": "300",
+  "[json]": {
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2,
+  },
+  "[jsonc]": {
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2,
+  },
+  "[typescript]": {
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2,
+  },
+  "[csharp]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.defaultFormatter": "ms-dotnettools.csharp",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    }
+  },
+  "omnisharp.enableEditorConfigSupport": true,
+  "omnisharp.organizeImportsOnFormat": true,
+  "omnisharp.enableRoslynAnalyzers": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.vs": true,
+    "**/lib": true,
+    "**/node_modules": true,
+    "*/**/bin": true,
+    "**/obj": true,
+    "**/*.csproj.user": true
+  },
+  "cSpell.words": [
+    "codegen",
+    "Gameplay",
+    "Plarium"
+  ]
+}
