@@ -50,7 +50,7 @@ jobs:
       # NuGet Push
       - name: Push package to nuget.org
         run: |
-          dotnet nuget push publish\*.nupkg -k $env:PUBLISH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
-          dotnet nuget push publish\*.snupkg -k $env:PUBLISH_TOKEN -s https://www.nuget.org/api/v2/symbolpackage --skip-duplicate
+          dotnet nuget push publish\*.nupkg -k $env:NUGET_PUBLISH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
+          dotnet nuget push publish\*.snupkg -k $env:NUGET_PUBLISH_TOKEN -s https://www.nuget.org/api/v2/symbolpackage --skip-duplicate
         env:
-          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+          NUGET_PUBLISH_TOKEN: ${{ secrets.NUGET_PUBLISH_TOKEN }}
