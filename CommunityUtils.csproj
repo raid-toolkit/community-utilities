@@ -8,6 +8,7 @@
         <!--Not building a real extension, so don't package one-->
         <PackageRTKExtension>false</PackageRTKExtension>
         <!--Just in it for the interop-->
+        <RTKTasks>false</RTKTasks>
         <RTKInteropCache>true</RTKInteropCache>
         <Platforms>x64</Platforms>
     </PropertyGroup>
