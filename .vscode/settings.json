@@ -42,8 +42,14 @@
     "**/*.csproj.user": true
   },
   "cSpell.words": [
+    "Browsable",
     "codegen",
+    "finalizer",
     "Gameplay",
-    "Plarium"
+    "msbuild",
+    "nupkg",
+    "Plarium",
+    "snupkg",
+    "unmanaged"
   ]
 }

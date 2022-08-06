@@ -8,6 +8,8 @@ on:
     paths:
       - "**"
       - "!scripts/**"
+      - "!.vscode/**"
+      - "!*.md"
 
 jobs:
   build:
