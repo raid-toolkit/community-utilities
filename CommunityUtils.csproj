@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Il2CppToolkit.Runtime" Version="2.0.90-alpha" />
         <PackageReference Include="Raid.Toolkit.Extensibility" Version="2.0.45-alpha" />
         <PackageReference Include="Raid.Toolkit.Extensibility.Tasks" Version="2.0.45-alpha" />
     </ItemGroup>
