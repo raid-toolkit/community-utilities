@@ -27,12 +27,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove="_rtkCache\**" />
-        <EmbeddedResource Remove="_rtkCache\**" />
-        <None Remove="_rtkCache\**" />
-    </ItemGroup>
-
-    <ItemGroup>
         <RTKExtensionManifest Include=".rtk.extension.json">
             <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </RTKExtensionManifest>
