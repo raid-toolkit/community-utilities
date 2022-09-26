@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net5.0-windows</TargetFrameworks>
+        <TargetFrameworks>net6.0-windows</TargetFrameworks>
         <LangVersion>10.0</LangVersion>
         <AssemblyName>Raid.Toolkit.Community</AssemblyName>
         <RootNamespace>Raid.Toolkit.Community</RootNamespace>
@@ -18,9 +18,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Il2CppToolkit.Runtime" Version="2.0.90-alpha" />
-        <PackageReference Include="Raid.Toolkit.Extensibility" Version="2.0.45-alpha" />
-        <PackageReference Include="Raid.Toolkit.Extensibility.Tasks" Version="2.0.45-alpha" />
+        <PackageReference Include="Il2CppToolkit.Runtime" Version="2.0.101-alpha" />
+        <PackageReference Include="Raid.Toolkit.Extensibility" Version="2.0.70-alpha" />
+        <PackageReference Include="Raid.Toolkit.Extensibility.Tasks" Version="2.0.70-alpha">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
