@@ -1,43 +1,50 @@
+using System;
 using Raid.Toolkit.Common;
 using Raid.Toolkit.Extensibility;
-using System;
-using System.Windows.Forms;
 
 namespace Raid.Toolkit.Community.Extensibility.Utilities.UI
 {
-    public class MenuExtension<T> : IDisposable where T : Form
+    public class MenuExtension<T> : IDisposable where T : class
     {
         private bool IsDisposed;
-        private bool IsShowing = false;
+        private bool IsShowing;
         private readonly IExtensionHost Host;
         private readonly DisposableCollection Disposables = new();
 
         public MenuExtension(IExtensionHost host, string menuItemName, WindowOptions options = null)
         {
             Host = host;
-            Host.RegisterWindow<T>(options ?? new WindowOptions() { RememberPosition = true, RememberVisibility = true });
+            _ = Host.RegisterWindow<T>(options ?? new WindowOptions() { RememberPosition = true, RememberVisibility = true });
             MenuEntry menuEntry = new() { DisplayName = menuItemName, IsEnabled = true, IsVisible = true };
             menuEntry.Activate += OnShowUI;
-            Disposables.Add(host.RegisterMenuEntry(menuEntry));
+            _ = Disposables.Add(host.RegisterMenuEntry(menuEntry));
         }
 
         private void OnShowUI(object sender, EventArgs e)
         {
-            Show();
+            _ = Show();
         }
 
-        public Form Show()
+        public IWindowAdapter<T> Show()
         {
             if (IsShowing) return null;
-            T dialog = Host.CreateWindow<T>();
-            dialog.FormClosed += Dialog_FormClosed;
-            dialog.Show();
+            IWindowAdapter<T> window = Host.CreateWindow<T>();
+            window.Closing += OnWindowClosed;
+            window.Show();
             IsShowing = true;
-            return dialog;
+            if (window is IDisposable disposable)
+                Disposables.Add(disposable);
+            return window;
         }
 
-        private void Dialog_FormClosed(object sender, FormClosedEventArgs e)
+        private void OnWindowClosed(object sender, WindowAdapterCloseEventArgs e)
         {
+            if (sender is IWindowAdapter adapter)
+                adapter.Closing -= OnWindowClosed;
+
+            if (sender is IDisposable disposable)
+                Disposables.Remove(disposable);
+
             IsShowing = false;
         }
 

@@ -13,15 +13,7 @@ namespace Raid.Toolkit.Community.Extensibility.Utilities
         }
 
         private AppModel _AppModel;
-        public AppModel AppModel
-        {
-            get
-            {
-                if (_AppModel == null)
-                    _AppModel = Client.App.SingleInstance<AppModel>._instance.GetValue(Context);
-                return _AppModel;
-            }
-        }
+        public AppModel AppModel => _AppModel ??= Client.App.SingleInstance<AppModel>._instance.GetValue(Context);
     }
 
     public class AppModelScope : ModelScopeBase

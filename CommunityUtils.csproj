@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net6.0-windows</TargetFrameworks>
+        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
+        <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+        <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+        <Platforms>x64</Platforms>
         <LangVersion>10.0</LangVersion>
         <AssemblyName>Raid.Toolkit.Community</AssemblyName>
         <RootNamespace>Raid.Toolkit.Community</RootNamespace>
@@ -8,25 +12,25 @@
         <!--Not building a real extension, so don't package one-->
         <PackageRTKExtension>false</PackageRTKExtension>
         <!--Just in it for the interop-->
-        <RTKTasks>false</RTKTasks>
+        <RTKTasks Condition=" '$(RTKTasks)' == '' ">true</RTKTasks>
         <RTKInteropCache>true</RTKInteropCache>
-        <Platforms>x64</Platforms>
+		<!-- https://github.com/dotnet/maui/issues/5886#issuecomment-1123106200 -->
+		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
-    </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Il2CppToolkit.Runtime" Version="2.0.101-alpha" />
-        <PackageReference Include="Raid.Toolkit.Extensibility" Version="2.0.70-alpha" />
-        <PackageReference Include="Raid.Toolkit.Extensibility.Tasks" Version="2.0.70-alpha">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PackageReference Include="Il2CppToolkit.Runtime" Version="2.0.104-alpha" />
+        <PackageReference Include="Raid.Toolkit.Extensibility" Version="2.2.2-alpha" />
+        <PackageReference Include="Raid.Toolkit.Extensibility.Tasks" Version="2.2.2-alpha">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
+        <!--Just in it for the interop-->
         <RTKExtensionManifest Include=".rtk.extension.json">
             <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </RTKExtensionManifest>

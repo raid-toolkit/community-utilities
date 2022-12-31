@@ -1,24 +1,19 @@
-using Microsoft.Extensions.DependencyInjection;
-using Raid.Toolkit.Extensibility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+using Raid.Toolkit.Extensibility;
 
 namespace Raid.Toolkit.Community.Extensibility.Utilities
 {
-    public class GameModelInstanceList<T, U> : BindingList<T>,  IDisposable where T : GameModelInstance<U> where U : ModelScopeBase
+    public class GameModelInstanceList<T, U> : BindingList<T>, IDisposable where T : GameModelInstance<U> where U : ModelScopeBase
     {
         private readonly IServiceProvider ServiceProvider;
         private readonly IGameInstanceManager InstanceManager;
         private bool IsDisposed;
 
         public IList<T> Instances => Items;
-
-        //public static GameModelInstanceList<T, U> CreateInstance(IServiceProvider serviceProvider)
-        //{
-        //    return ActivatorUtilities.CreateInstance<GameModelInstanceList<T, U>>(serviceProvider);
-        //}
 
         public GameModelInstanceList(IServiceProvider serviceProvider, IGameInstanceManager instanceManager)
             : base(instanceManager.Instances.Select(instance => ActivatorUtilities.CreateInstance<T>(serviceProvider, instance)).ToList())
@@ -33,7 +28,7 @@ namespace Raid.Toolkit.Community.Extensibility.Utilities
         {
             T[] itemsToRemove = Items.Where(item => item.GameInstance.Id == e.Instance.Id).ToArray();
             foreach (var itemToRemove in itemsToRemove)
-                Remove(itemToRemove);
+                _ = Remove(itemToRemove);
         }
 
         private void InstanceManager_OnAdded(object sender, IGameInstanceManager.GameInstancesUpdatedEventArgs e)
