@@ -14,8 +14,9 @@
         <!--Just in it for the interop-->
         <RTKTasks Condition=" '$(RTKTasks)' == '' ">true</RTKTasks>
         <RTKInteropCache>true</RTKInteropCache>
-		<!-- https://github.com/dotnet/maui/issues/5886#issuecomment-1123106200 -->
-		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+        <!-- https://github.com/dotnet/maui/issues/5886#issuecomment-1123106200 -->
+        <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>

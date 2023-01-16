@@ -1,14 +1,23 @@
 {
-    "id": "Raid.Toolkit.Community.Utilities",
-    "type": "Raid.Toolkit.Community.Utilities",
-    "displayName": "RTK Community Utilities",
-    "description": "Extracts account data",
-    "codegen": {
-        "types": [
-            "^Client\\.Model\\.AppModel$",
-            "^Client\\.Model\\.Gameplay\\.Artifacts\\.ExternalArtifactsStorage$",
-            "^Client\\.Model\\.Gameplay\\.StaticData\\.ClientStaticDataManager$",
-            "^SharedModel\\.Meta\\.Artifacts\\.ArtifactStorage\\.ArtifactStorageResolver$"
-        ]
-    }
+  "id": "Raid.Toolkit.Community.Utilities",
+  "type": "Raid.Toolkit.Community.Utilities",
+  "displayName": "RTK Community Utilities",
+  "description": "Extracts account data",
+  "codegen": {
+    "types": [
+      "^Client\\.Model\\.AppModel$",
+      "^Client\\.Model\\.Gameplay\\.Artifacts\\.ExternalArtifactsStorage$",
+      "^Client\\.Model\\.Gameplay\\.StaticData\\.ClientStaticDataManager$",
+      "^SharedModel\\.Meta\\.Artifacts\\.ArtifactStorage\\.ArtifactStorageResolver$",
+      "^Client\\.ViewModel\\.Contextes\\.",
+      "^Client\\.ViewModel\\.Contextes\\.[a-zA-Z0-9\\.]*\\+State$",
+      "^Client\\.View\\.Views\\.",
+      "^Entitas\\.",
+      "^Client\\.MVVM\\.Base\\.ViewModel\\.Contexts\\.",
+      "^ECS\\.(Components|ViewModel)\\.",
+      "^Client\\.RaidApp\\.RaidViewMaster$",
+      "^Client\\.RaidApp\\.RaidApplication$",
+      "^Client\\.Model\\.Gameplay\\.StaticData\\.ClientStaticDataManager$"
+    ]
+  }
 }
