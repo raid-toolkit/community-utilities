@@ -20,7 +20,7 @@ namespace Raid.Toolkit.Community.Extensibility.Utilities.UI
             _ = Disposables.Add(host.RegisterMenuEntry(menuEntry));
         }
 
-        private void OnShowUI(object sender, EventArgs e)
+        private void OnShowUI(object? sender, EventArgs e)
         {
             _ = Show();
         }
