@@ -25,7 +25,7 @@ namespace Raid.Toolkit.Community.Extensibility.Utilities.UI
             _ = Show();
         }
 
-        public IWindowAdapter<T> Show()
+        public IWindowAdapter<T>? Show()
         {
             if (IsShowing) return null;
             IWindowAdapter<T> window = Host.CreateWindow<T>();
@@ -37,7 +37,7 @@ namespace Raid.Toolkit.Community.Extensibility.Utilities.UI
             return window;
         }
 
-        private void OnWindowClosed(object sender, WindowAdapterCloseEventArgs e)
+        private void OnWindowClosed(object? sender, WindowAdapterCloseEventArgs e)
         {
             if (sender is IWindowAdapter adapter)
                 adapter.Closing -= OnWindowClosed;
